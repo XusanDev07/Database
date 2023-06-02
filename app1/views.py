@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from methodism import METHODISM, custom_response, error_messages, MESSAGE, code_decoder
+from app1 import methods
 
-# Create your views here.
+
+class Main(METHODISM):
+    file = methods
+    not_auth_methods = ['regis']
+
+
