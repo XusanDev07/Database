@@ -51,7 +51,7 @@ class OTP(models.Model):
         if self.tries >= 3:
             self.is_expire = True
 
-        super(Otp, self).save(*args, **kwargs)
+        super(OTP, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.email}'
