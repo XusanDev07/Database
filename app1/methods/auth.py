@@ -1,5 +1,8 @@
 from methodism.helper import custom_response
+from rest_framework.authtoken.models import Token
 
+from app1.models import User
+from app1.models.User import OTP
 
 
 def regis(requests, params):
