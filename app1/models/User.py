@@ -35,3 +35,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f'{self.username}'
 
+
+class OTP(models.Model):
+    key = models.CharField(max_length=512)
+    email = models.CharField(max_length=128)
+
+    is_conf = models.BooleanField(default=False)
+    is_expire = models.BooleanField(default=False)
+    tries = models.SmallIntegerField(default=0)
+
+    create = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.tries >= 3:
+            self.is_expire = True
+
+        super(Otp, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.email}'
